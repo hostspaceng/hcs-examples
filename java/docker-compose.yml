@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  my-java-spring-app:
+    build: .
+    container_name: my-java-spring-app
+    restart: unless-stopped
+    ports:
+      - 8085:8080
+  

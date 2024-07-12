@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  my-next-js-app:
+    build: .
+    container_name: my-next-js-app
+    restart: unless-stopped
+    ports:
+      - 3005:3000
+  
