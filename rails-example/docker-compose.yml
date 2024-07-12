@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  my-rails-app:
+    build: .
+    container_name: my-rails-app
+    restart: unless-stopped
+    ports:
+      - 3005:3000
+  
