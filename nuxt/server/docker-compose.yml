@@ -4,6 +4,4 @@ services:
     build: .
     container_name: my-nuxt-app
     restart: unless-stopped
-    ports:
-      - 3000:3000
   
