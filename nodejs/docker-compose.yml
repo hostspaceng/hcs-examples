@@ -5,6 +5,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "8081:3000"
+    
     container_name: api_container
