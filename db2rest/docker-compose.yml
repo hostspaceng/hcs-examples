@@ -11,3 +11,6 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
     networks:
       - coolify
+    labels:
+      - coolify.managed=true
+    container_name: db2rest    
