@@ -1,16 +1,25 @@
 version: '3.8'
-
 services:
   db2rest:
     image: kdhrubo/db2rest:latest
     ports:
       - "8080"
     environment:
-      DB_URL: ${DB_URL}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
+      - DB_URL=${DB_URL}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      # - ENABLE_AUTH=true
+      # - AUTH_DATA_SOURCE=file:///opt/app/auth.yml     
     networks:
       - coolify
+    # volumes:
+    #   - ./auth.yml:/opt/app/auth.yml
     labels:
       - coolify.managed=true
-    container_name: db2rest    
+      - coolify.applicationId=1
+      - coolify.type=application
+      - traefik.enable=true
+      - traefik.http.routers.db2rest.rule=Host(`db-dev.hostspaceng.com`) 
+      - traefik.http.routers.db2rest.entryPoints=http
+      - traefik.http.services.db2rest.loadbalancer.server.port=8080
+    container_name: db2rest
