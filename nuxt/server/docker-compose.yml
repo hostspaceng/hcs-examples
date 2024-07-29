@@ -2,15 +2,12 @@ version: '3.3'
 services:
   my-nuxt-app:
     build: .
-    container_name: nuxt-app
+    container_name: nuxt
     restart: unless-stopped
     ports:
       - 3000:3000
     labels:
-      - coolify.managed=true
-      - coolify.applicationId=1
-      - coolify.type=application
       - traefik.enable=true
-      - traefik.http.routers.nuxt-app.rule=Host(`nuxt-app.hostspacecloud.com`)
-      - traefik.http.routers.nuxt-app.entryPoints=http
-      - traefik.http.services.nuxt-app.loadbalancer.server.port=3000
+      - traefik.http.routers.nuxt.rule=Host(`nuxt.hostspacecloud.com`)
+      - traefik.http.routers.nuxt.entryPoints=http
+      - traefik.http.services.nuxt.loadbalancer.server.port=3000

@@ -2,8 +2,12 @@ version: '3.3'
 services:
   my-nuxt-app:
     build: .
-    container_name: my-nuxt-app
+    container_name: nuxt
     restart: unless-stopped
     ports:
       - 3000:3000
-  
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.nuxt.rule=Host(`nuxt.hostspacecloud.com`)
+      - traefik.http.routers.nuxt.entryPoints=http
+      - traefik.http.services.nuxt.loadbalancer.server.port=3000

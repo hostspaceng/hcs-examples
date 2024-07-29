@@ -6,4 +6,8 @@ services:
     restart: unless-stopped
     ports:
       - 8085:8080
-  
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.my-java-spring-app.rule=Host(`my-java-spring-app.hostspacecloud.com`)
+      - traefik.http.routers.my-java-spring-app.entryPoints=http
+      - traefik.http.services.my-java-spring-app.loadbalancer.server.port=3000

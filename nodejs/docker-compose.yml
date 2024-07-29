@@ -5,5 +5,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    
-    container_name: api_container
+    ports:
+      - "3000"
+    container_name: api-node
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.api-node.rule=Host(`api-node.hostspacecloud.com`)
+      - traefik.http.routers.api-node.entryPoints=http
+      - traefik.http.services.api-node.loadbalancer.server.port=3000

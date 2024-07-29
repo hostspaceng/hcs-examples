@@ -6,4 +6,9 @@ services:
     restart: unless-stopped
     ports:
       - 3005:3000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.my-rails-app.rule=Host(`my-rails-app.hostspacecloud.com`)
+      - traefik.http.routers.my-rails-app.entryPoints=http
+      - traefik.http.services.my-rails-app.loadbalancer.server.port=3000
   
