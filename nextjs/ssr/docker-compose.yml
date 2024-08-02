@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  my-next-js-app:
+    build: .
+    container_name: my-next-js-app
+    restart: unless-stopped
+    ports:
+      - 3005:3000
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.my-next-js-app.rule=Host(`my-next-js-app.hostspacecloud.com`)
+      - traefik.http.routers.my-next-js-app.entryPoints=http
+      - traefik.http.services.my-next-js-app.loadbalancer.server.port=3000
